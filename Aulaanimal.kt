@@ -26,7 +26,7 @@ class Raposa : Animal() {
 }
 
 Animal
-class Animal(){
+open class Animal(){
     var nome: String = ""
     var especie: String = ""
     var dieta: String = ""
@@ -40,14 +40,14 @@ class Animal(){
 }
 
 ExemploAula
-fun main(){
+fun main() {
     var gato = Gato()
     gato.nome = "Gato"
     gato.dieta = "Peixe"
     gato.habitat = "Apartamento"
     gato.especie = "Felino"
 
-    val cachorro: Gato = gato as Gato // Não recomendado
+//    val gato: Gato = gato as Gato // Não recomendado
 
     println(gato.nome)
     println(gato.somAnimal())
@@ -59,7 +59,7 @@ fun main(){
     cachorro.habitat = "Casa"
     cachorro.especie = "Canino"
 
-    val gato: Cachorro = cachorro as Cachorro // Não recomendado
+//    val cachorro: Cachorro = cachorro as Cachorro // Não recomendado
 
     println(cachorro.nome)
     println(cachorro.somAnimal())
@@ -73,13 +73,14 @@ fun main(){
     raposa.habitat = "Floresta"
     raposa.especie = "Canino"
 
-    val gato: Cachorro = raposa as Raposa // Não recomendado
+//    val raposa: Raposa = raposa as Raposa // Não recomendado
 
     println(raposa.nome)
     println(raposa.somAnimal())
     raposa.somAnimal()
 
-    val lista = listof<Animal>(gato, cachorro, raposa)
+    val lista = listOf<Animal>(gato, cachorro, raposa)
     println("Lista: ${lista.first().somAnimal()}")
 
 }
+
