@@ -1,75 +1,79 @@
 Main.kt
+//Variavel Global
+var listaDeConvidados = mutableListOf<Convidado>()
+
 fun main() {
-    
-    //List só leitura mutableList você pode editar
-    var listaDeConvidados = mutableListOf<Convidado>()
-    
-    do{
-
-        println("1 - Criar")
-        println("2 - Listar")
-        println("3 - Editar")
-        println("4 - Excluir")
-        println("0 - Sair")
-        val op = readln()
-        when(op.toInt()){
-            1-> {
-
-                extracted(listaDeConvidados)
-
-            }
-            2-> print("Listar")
-            3-> print("Editar")
-            4-> print("Excluir")
-            0-> print("Saindo...")
-        }
-
-    }while(op.toInt() !=0)
+    menu()
 }
 
-private fun extracted(listaDeConvidados: MutableList<Convidado>) {
-    println("Criar")
-    println("Nome do convidado: ")
+private fun menu() {
+    do {
+        println("1- CRIAR")
+        println("2- LISTAR")
+        println("3- EDITAR")
+        println("4- EXCLUIR")
+        println("0- SAIR")
+        val op = readln()//VALIDAR!
+
+        when (op.toInt()) {//Opções do menu
+            1 -> criar()
+            2 -> print("LISTAR")
+            3 -> print("EDITAR")
+            4 -> print("EXCLUIR")
+            0 -> print("Saindo...")
+        }
+    } while (op.toInt() != 0)
+}
+
+private fun criar() {
+    println("CRIAR")
+    print("Nome do convidado: ")
     val nome = readln()
 
-    println("Qual o seu presente: ")
+    print("Qual o seu presente: ")
     val presente = readln()
 
-    println("Alguma restrição alimentar? ")
+    print("Alguma restrição alimentar? ")
     val alimentar = readln()
 
-    println("Sexo M ou F")
+    print("Sexo: M ou F")
     val sexo = readln()
     when (sexo) {
-
         "M" -> {
-
-            var homem: Homem = Homem()
+            var homem = Homem()
             homem.nome = nome
             homem.restricao = alimentar
-            homem.presente = presente
+            homem.vestuario = presente
 
-            listaDeConvidados.add()
-
+            listaDeConvidados.add(homem)
         }
 
         "F" -> {
-
-            var mulher: Mulher = Mulher()
+            var mulher = Mulher()
             mulher.nome = nome
             mulher.restricao = alimentar
-            mulher.presente = presente
-            listaDeConvidados.add()
+            mulher.brinquedo = presente
 
-
+            listaDeConvidados.add(mulher)
         }
+    }
+}
+
+private fun listar(){
+    println("Listando...")
+
+    var i = 0
+
+    listaDeConvidados.forEach { convidado ->
+        println("${i++}; nome: ${convidado.nome} " + " alimentação: ${convidado.restricao} " + " presente: -")
+
     }
 }
 
 
 Convidado.kt
 open class Convidado() {
-    var presente: String = ""
+    //var presente: String = ""
     var restricao: String = ""
     var nome: String = ""
     var presenca: Boolean = false
